@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Password Generator";
+}
+
+<div class="row">
+  <p><strong>NOTE: </strong>Use the controls below to choose your password length and complexity, then hit 'Generate' to create a unique, secure password.</p>
+  <div class="col-12 col-lg-6">
+    <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
+    <div id="length-container" class="col-12 col-lg-6 mb-4 p-3 border rounded-3 bg-white">
+      <label for="length-input" class="form-label fs-5">Choose password length:</label>
+      <div class="input-group">
+        <select class="form-select" aria-label="Password length">
+          <option selected>Choose length</option>
+          @for(int i = 8; i < 13; i++)
+          {
+            <option value="@i">@i</option>
+          }
+        </select>
+        @* <input type="number" class="form-control form-control-lg" id="length-input" placeholder="Your word..." aria-label="Password length input">
+        <button type="button" class="btn btn-primary btn-lg" onclick="saveWord()">Choose</button> *@
+      </div>
+    </div>
+
+    <div id="complexity-container" class="mb-4 p-3 border rounded-3 bg-white">
+      <label for="secret-word-input" class="form-label fs-5">Choose complexity options</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="specialChars">
+          <label class="form-check-label" for="specialChars">
+            Special Chars
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="numbers">
+          <label class="form-check-label" for="numbers">
+            Numbers
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="upperCase">
+          <label class="form-check-label" for="upperCase">
+            Uppercase letters
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="lowerCase">
+          <label class="form-check-label" for="lowerCase">
+            Lowercase letters
+          </label>
+        </div>
+    </div>
+
+   @*  <div id="controls-container" class="mb-4 p-3 border rounded-3 bg-white">
+      <label for="secret-word-input" class="form-label fs-5">Choose password length:</label>
+      <div class="input-group">
+        <input type="text" class="form-control form-control-lg" id="secret-word-input" placeholder="Your word..." aria-label="Secret word input">
+        <button type="button" class="btn btn-primary btn-lg" onclick="saveWord()">Choose</button>
+      </div>
+    </div> *@
+    <button type="submit" class="btn btn-success" id="generateButton">GENERATE</button>
+      <div id="displayNewPassword" class="border rounded-3 p-2 mt-2" style="display: none">
+      &nbsp;
+    </div>
+    </form>
+  </div>
+
+</div>
+
+@section styles {
+ @*  <link rel="stylesheet" href="~/assets/libs/sweetalert2/sweetalert2.min.css"> *@
+  <style type="text/css">
+    
+  </style>
+}
+@section scripts {
+  @* <script src="~/assets/js/moment.js"></script> *@
+  <script type="text/javascript">
+    let v = "";
+
+    $(document).ready(async function() 
+    {
+
+    });
+
+    function one()
+    {
+
+    }
+
+  </script>
+}
