@@ -59,7 +59,7 @@ namespace PasswordGenerator.Controllers
             int j = random.Next(0,lengthOfCharsList);
             password += mix[j];
           }
-
+          model.NewPassword = password;
           return View(model);
         }
 

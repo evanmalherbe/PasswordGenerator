@@ -6,10 +6,13 @@
 <div class="card">
   <div class="card-body col-6">
     <h2 class="card-title">
-      Your New Password
+      Generated Password
     </h2>
-    <p class="card-text">
-      This is text. Password is @Model.Length chars long
+    <p class="card-text mt-4">
+      Your password is <strong>@Model.NewPassword</strong>
     </p>
+    <div class="">
+      <a asp-controller="Home" asp-action="Index" class="btn btn-success" id="backHome"></a>
+    </div>
   </div>
 </div>
