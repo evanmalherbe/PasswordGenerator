@@ -52,10 +52,11 @@ namespace PasswordGenerator.Controllers
        
           string password = "";
           Random random = new Random();
-          int lengthOfList = mix.Count;
+          int lengthOfCharsList = mix.Count - 1;
+
           for(int i = 0; i < model.Length; i++) 
           {
-            int j = random.Next(0,lengthOfList);
+            int j = random.Next(0,lengthOfCharsList);
             password += mix[j];
           }
 
