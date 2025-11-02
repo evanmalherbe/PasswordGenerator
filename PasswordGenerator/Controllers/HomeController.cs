@@ -8,6 +8,9 @@ namespace PasswordGenerator.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly string lowercaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
+        private readonly string uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private readonly string numberList = "0123456789";
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -26,7 +29,36 @@ namespace PasswordGenerator.Controllers
 
         public IActionResult Create(CreateViewModel model)
         {
+          List<char> mix = new List<char>();
+          char[] uppercase = uppercaseAlphabet.ToCharArray(); // 26
+          char[] lowercase = lowercaseAlphabet.ToCharArray(); // 26
+          char[] numbers = numberList.ToCharArray(); // 10
           
+          static void addChars(bool toInclude,char[] theArray, List<char> mixList)
+          { 
+            List<char> theList = new List<char>();
+            if (toInclude)
+            {
+              foreach(char letter in theArray)
+              {
+                mixList.Add(letter);
+              }
+            }
+          };
+          
+          addChars(model.UpperCase, uppercase, mix);
+          addChars(model.LowerCase, lowercase, mix);
+          addChars(model.Numbers, numbers, mix);
+       
+          string password = "";
+          Random random = new Random();
+          int lengthOfList = mix.Count;
+          for(int i = 0; i < model.Length; i++) 
+          {
+            int j = random.Next(0,lengthOfList);
+            password += mix[j];
+          }
+
           return View(model);
         }
 
