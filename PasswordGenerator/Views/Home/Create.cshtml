@@ -1,6 +1,7 @@
 ﻿@model PasswordGenerator.ViewModels.CreateViewModel;
 @{
   ViewData["Title"] = "Password Generated!";
+  string newPass = Model?.NewPassword ?? "";
 }
 
 @* Centering the content on the page *@
@@ -34,7 +35,7 @@
           </a>
 
           @* Placeholder for a Copy Button (Requires JavaScript) *@
-          <button type="button" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="navigator.clipboard.writeText('@Model.NewPassword')" title="Click to copy the password to your clipboard">
+          <button type="button" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="copyToClipboard('@newPass')" title="Click to copy the password to your clipboard">
             <i class="bi bi-clipboard"></i> Copy Password
           </button>
         </div>
@@ -47,3 +48,22 @@
     </div>
   </div>
 </div>
+
+@section scripts {
+  @* <script src="~/assets/js/moment.js"></script> *@
+  <script type="text/javascript">
+    let v = "";
+
+    $(document).ready(async function()
+    {
+
+    });
+
+    function copyToClipboard(newPassword)
+    {
+      debugger;
+
+    }
+
+  </script>
+}
