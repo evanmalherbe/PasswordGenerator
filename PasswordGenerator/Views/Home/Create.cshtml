@@ -1,18 +1,49 @@
 ﻿@model PasswordGenerator.ViewModels.CreateViewModel;
 @{
-  ViewData["Title"] = "Generated Password";
+  ViewData["Title"] = "Password Generated!";
 }
 
-<div class="card">
-  <div class="card-body col-6">
-    <h2 class="card-title">
-      Generated Password
-    </h2>
-    <p class="card-text mt-4">
-      Your password is <strong>@Model.NewPassword</strong>
-    </p>
-    <div class="">
-      <a asp-controller="Home" asp-action="Index" class="btn btn-primary" id="backHome">Back</a>
+@* Centering the content on the page *@
+<div class="row justify-content-center mt-5">
+  <div class="col-12 col-md-8 col-lg-6">
+
+    @* Card styled for success/focus *@
+    <div class="card shadow-lg border-success">
+      <div class="card-header bg-success text-white text-center">
+        <h3 class="mb-0">
+          <i class="bi bi-shield-lock-fill me-2"></i> Password Successfully Generated!
+        </h3>
+      </div>
+      <div class="card-body text-center p-4">
+
+        <h4 class="card-title text-success mb-4">Your New Secure Password:</h4>
+
+        @* The Password Display - Highly Stylized *@
+        <div class="p-3 mb-4 bg-light border border-secondary rounded-3">
+          <code class="fs-3 fw-bold text-dark user-select-all">
+            @Model.NewPassword
+          </code>
+        </div>
+
+        @* Action Buttons *@
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+          @* Back Button *@
+          <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary btn-lg order-2 order-sm-1" id="backHome">
+            <i class="bi bi-arrow-left"></i> Go Back to Generator
+          </a>
+
+          @* Placeholder for a Copy Button (Requires JavaScript) *@
+          <button type="button" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="navigator.clipboard.writeText('@Model.NewPassword')" title="Click to copy the password to your clipboard">
+            <i class="bi bi-clipboard"></i> Copy Password
+          </button>
+        </div>
+      </div>
+
+      @* Footer with a quick security tip *@
+      <div class="card-footer text-muted small text-center">
+        Tip: Store your password safely! Do not rely solely on your browser's clipboard.
+      </div>
     </div>
   </div>
 </div>
