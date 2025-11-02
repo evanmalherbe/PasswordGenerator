@@ -8,17 +8,18 @@
  @* Controls *@
   <div class="col-12 col-lg-6">
     <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
+      @* Validation errors/messages to user *@
+     <div asp-validation-summary="ModelOnly" class="text-danger fw-bold mb-3 text-center" role="alert"></div>
     <div id="length-container" class="col-12 col-lg-6 mb-1 p-1">
-        <label asp-for="Length" class="form-label"><h4>Length</h4></label>
-      <div class="input-group">
-        <select asp-for="Length" class="form-select" aria-label="Password length">
-          <option selected>Password length</option>
-          @for(int i = 20; i > 7; i--)
-          {
-            <option value="@i">@i</option>
-          }
-        </select>
-      </div>
+      <label asp-for="PasswordLength" class="form-label"><h4>Length</h4></label>
+        <select asp-for="PasswordLength" class="form-select" aria-label="Password length" required>
+        <option value="" selected>Password length</option>
+        @for(int i = 20; i > 7; i--)
+        {
+          <option value="@i">@i</option>
+        }
+      </select>
+        <span asp-validation-for="PasswordLength" class="text-danger small mt-1 d-block"></span>
     </div>
 
     <div id="complexity-container" class="mb-4 p-1">

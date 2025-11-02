@@ -30,6 +30,11 @@ namespace PasswordGenerator.Controllers
 
         public IActionResult Create(CreateViewModel model)
         {
+          if (!ModelState.IsValid)
+          {
+            ModelState.AddModelError(string.Empty, "Missing input");
+            RedirectToAction("Index", "Home");
+          }    
           List<char> mix = new List<char>();
           char[] uppercase = uppercaseAlphabet.ToCharArray(); // 26
           char[] lowercase = lowercaseAlphabet.ToCharArray(); // 26
@@ -56,8 +61,9 @@ namespace PasswordGenerator.Controllers
           string password = "";
           Random random = new Random();
           int lengthOfCharsList = mix.Count - 1;
+          int passwordLength = Int32.Parse(model.PasswordLength);
 
-          for(int i = 0; i < model.Length; i++) 
+          for(int i = 0; i < passwordLength; i++) 
           {
             int j = random.Next(0,lengthOfCharsList);
             password += mix[j];

@@ -2,7 +2,7 @@
 {
 	public class CreateViewModel
 	{
-		public int Length { get; set; }
+		public string PasswordLength { get; set; }
 		public bool SpecialChars { get; set; }
 		public bool UpperCase { get; set; }
 		public bool LowerCase { get; set; }
