@@ -3,64 +3,84 @@
     ViewData["Title"] = "Password Generator";
 }
 
-<div id="containerDiv" class="row justify-content-between">
-  
- @* Controls *@
-  <div class="col-12 col-lg-6">
-    <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
-      @* Validation errors/messages to user *@
-     <div asp-validation-summary="ModelOnly" class="text-danger fw-bold mb-3 text-center" role="alert"></div>
-    <div id="length-container" class="col-12 col-lg-6 mb-1 p-1">
-      <label asp-for="PasswordLength" class="form-label"><h4>Length</h4></label>
-        <select asp-for="PasswordLength" class="form-select" aria-label="Password length" required>
-        <option value="" selected>Password length</option>
-        @for(int i = 20; i > 7; i--)
-        {
-          <option value="@i">@i</option>
-        }
-      </select>
-        <span asp-validation-for="PasswordLength" class="text-danger small mt-1 d-block"></span>
-    </div>
+<div class="row justify-content-center mt-4">
 
-    <div id="complexity-container" class="mb-4 p-1">
-      <h4 class="">Complexity</h4>
-        <div class="form-check">
-          <input asp-for="SpecialChars" class="form-check-input" type="checkbox" id="specialChars">
-          <label class="form-check-label" asp-for="SpecialChars">
-            Special Characters
-          </label>
-        </div>
-        <div class="form-check">
-          <input asp-for="Numbers" class="form-check-input" type="checkbox" id="numbers">
-          <label class="form-check-label" asp-for="Numbers">
-            Numbers
-          </label>
-        </div>
-        <div class="form-check">
-          <input asp-for="UpperCase" class="form-check-input" type="checkbox" id="upperCase">
-          <label class="form-check-label" asp-for="UpperCase">
-            Uppercase letters
-          </label>
-        </div>
-        <div class="form-check">
-          <input asp-for="LowerCase" class="form-check-input" type="checkbox" id="lowerCase">
-          <label class="form-check-label" asp-for="LowerCase">
-            Lowercase letters
-          </label>
-        </div>
+  @* Controls Container - Wrapped in a Card for Visual Definition *@
+  <div class="col-12 col-md-5 mb-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h4 class="card-title text-primary mb-4">Password Generator Options</h4>
+
+        <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
+          @* Validation errors/messages to user *@
+          <div asp-validation-summary="ModelOnly" class="text-danger fw-bold mb-3 text-center" role="alert"></div>
+
+          @* Length Section *@
+          <div class="mb-4">
+            <label asp-for="PasswordLength" class="form-label fs-5 fw-bold text-secondary">Password Length</label>
+            <select asp-for="PasswordLength" class="form-select form-select-lg" aria-label="Password length" required>
+              <option value="" selected>Select a length (Min 8, Max 20)</option>
+              @for (int i = 20; i > 7; i--)
+              {
+                <option value="@i">@i Characters</option>
+              }
+            </select>
+            <span asp-validation-for="PasswordLength" class="text-danger small mt-1 d-block"></span>
+          </div>
+
+          @* Complexity Section *@
+          <div class="mb-4 pt-3 border-top">
+            <label class="form-label fs-5 fw-bold text-secondary mb-3">Character Types (Complexity)</label>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-check">
+                  <input asp-for="SpecialChars" class="form-check-input" type="checkbox" id="specialChars">
+                  <label class="form-check-label" asp-for="SpecialChars">Special Characters</label>
+                </div>
+                <div class="form-check">
+                  <input asp-for="Numbers" class="form-check-input" type="checkbox" id="numbers">
+                  <label class="form-check-label" asp-for="Numbers">Numbers (0-9)</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-check">
+                  <input asp-for="UpperCase" class="form-check-input" type="checkbox" id="upperCase">
+                  <label class="form-check-label" asp-for="UpperCase">Uppercase (A-Z)</label>
+                </div>
+                <div class="form-check">
+                  <input asp-for="LowerCase" class="form-check-input" type="checkbox" id="lowerCase">
+                  <label class="form-check-label" asp-for="LowerCase">Lowercase (a-z)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          @* Generate Button *@
+          <div class="d-grid gap-2 pt-3">
+            <button type="submit" class="btn btn-success btn-lg" id="generateButton">
+              <i class="bi bi-key-fill me-2"></i> GENERATE PASSWORD
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    <button type="submit" class="btn btn-success" id="generateButton">CREATE PASSWORD</button>
-    </form>
   </div>
 
-  @* User Guidelines *@
-  <div class="col-12 col-lg-5">
-    <h4>Guidelines</h4>
-    <ul>
-      <li>Use the controls to the left to choose your password length and complexity, then hit <strong>Generate</strong> to create a unique, secure password.</li>
-      <li>The <strong>National Institute of Standards and Technology</strong> (NIST) suggests you focus on password <u>length</u>, rather than complexity (mix of special characters, uppercase, lowercase, numbers) to create the most secure password.</li>
-      <li><strong>Recommended length:</strong> at least 8 but ideally 15 or more characters</li>
-    </ul>
+  @* User Guidelines Container - Wrapped in a Card *@
+  <div class="col-12 col-md-5 mb-4">
+    <div class="card shadow-sm bg-light h-100 border-0">
+      <div class="card-body">
+        <h4 class="card-title text-info mb-3">🔒 Security Guidelines</h4>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-light border-0">Use the control panel to the left to define your criteria, then hit the **Generate Password** button.</li>
+          <li class="list-group-item bg-light border-0">The **National Institute of Standards and Technology** (NIST) strongly recommends prioritizing **password length** over complexity (mix of character types) for maximum security.</li>
+          <li class="list-group-item bg-light border-0">
+            <p class="mb-0">🔑 **Recommended Length:**</p>
+            <p class="fw-bold text-success">At least 8, but ideally 15 or more characters.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
