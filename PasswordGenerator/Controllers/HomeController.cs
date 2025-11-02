@@ -11,6 +11,7 @@ namespace PasswordGenerator.Controllers
         private readonly string lowercaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
         private readonly string uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private readonly string numberList = "0123456789";
+        private readonly string specialChars = "!\\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; 
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -33,6 +34,7 @@ namespace PasswordGenerator.Controllers
           char[] uppercase = uppercaseAlphabet.ToCharArray(); // 26
           char[] lowercase = lowercaseAlphabet.ToCharArray(); // 26
           char[] numbers = numberList.ToCharArray(); // 10
+          char[] special = specialChars.ToCharArray(); // 32
           
           static void addChars(bool toInclude,char[] theArray, List<char> mixList)
           { 
@@ -49,6 +51,7 @@ namespace PasswordGenerator.Controllers
           addChars(model.UpperCase, uppercase, mix);
           addChars(model.LowerCase, lowercase, mix);
           addChars(model.Numbers, numbers, mix);
+          addChars(model.SpecialChars, special, mix);
        
           string password = "";
           Random random = new Random();

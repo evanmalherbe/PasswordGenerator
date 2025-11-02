@@ -3,32 +3,31 @@
     ViewData["Title"] = "Password Generator";
 }
 
-<div class="row">
-  <p><strong>NOTE: </strong>Use the controls below to choose your password length and complexity, then hit 'Generate' to create a unique, secure password.</p>
+<div id="containerDiv" class="row justify-content-between">
+  
+ @* Controls *@
   <div class="col-12 col-lg-6">
-
+    <h4>Options</h4>
     <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
-    <div id="length-container" class="col-12 col-lg-6 mb-4 p-3 border rounded-3 bg-white">
-      <label asp-for="Length" class="form-label fs-5">Choose password length:</label>
+    <div id="length-container" class="col-12 col-lg-6 mb-0 p-3">
+        <label asp-for="Length" class="form-label"><h4>Length</h4></label>
       <div class="input-group">
         <select asp-for="Length" class="form-select" aria-label="Password length">
-          <option selected>Choose length</option>
-          @for(int i = 8; i < 13; i++)
+          <option selected>Password length</option>
+          @for(int i = 20; i > 7; i--)
           {
             <option value="@i">@i</option>
           }
         </select>
-        @* <input type="number" class="form-control form-control-lg" id="length-input" placeholder="Your word..." aria-label="Password length input">
-        <button type="button" class="btn btn-primary btn-lg" onclick="saveWord()">Choose</button> *@
       </div>
     </div>
 
-    <div id="complexity-container" class="mb-4 p-3 border rounded-3 bg-white">
-      <h4 class="">Choose complexity options</h4>
+    <div id="complexity-container" class="mb-4 p-3">
+      <h4 class="">Complexity</h4>
         <div class="form-check">
           <input asp-for="SpecialChars" class="form-check-input" type="checkbox" id="specialChars">
           <label class="form-check-label" asp-for="SpecialChars">
-            Special Chars
+            Special Characters
           </label>
         </div>
         <div class="form-check">
@@ -50,18 +49,19 @@
           </label>
         </div>
     </div>
-
-   @*  <div id="controls-container" class="mb-4 p-3 border rounded-3 bg-white">
-      <label for="secret-word-input" class="form-label fs-5">Choose password length:</label>
-      <div class="input-group">
-        <input type="text" class="form-control form-control-lg" id="secret-word-input" placeholder="Your word..." aria-label="Secret word input">
-        <button type="button" class="btn btn-primary btn-lg" onclick="saveWord()">Choose</button>
-      </div>
-    </div> *@
     <button type="submit" class="btn btn-success" id="generateButton">GENERATE</button>
     </form>
   </div>
 
+  @* User Guidelines *@
+  <div class="col-12 col-lg-5">
+    <h4>Guidelines</h4>
+    <ul>
+      <li>Use the controls below to choose your password length and complexity, then hit <strong>Generate</strong> to create a unique, secure password.</li>
+      <li>The National Institute of Standards and Technology (NIST) suggests you focus on password LENGTH, rather than complexity (mix of special characters, uppercase, lowercase, numbers)</li>
+      <li><strong>Recommended length:</strong> at least 8 but ideally 15 or more characters</li>
+    </ul>
+  </div>
 </div>
 
 @section styles {
