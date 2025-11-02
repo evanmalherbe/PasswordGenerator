@@ -22,7 +22,7 @@
         @* The Password Display - Highly Stylized *@
         <div class="p-3 mb-4 bg-light border border-secondary rounded-3">
           <code class="fs-3 fw-bold text-dark user-select-all">
-            @Model.NewPassword
+            @newPass
           </code>
         </div>
 
@@ -35,7 +35,7 @@
           </a>
 
           @* Placeholder for a Copy Button (Requires JavaScript) *@
-          <button type="button" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="copyToClipboard('@newPass')" title="Click to copy the password to your clipboard">
+          <button type="button" id="copyButton" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="copyToClipboard('@newPass')" title="Click to copy the password to your clipboard">
             <i class="bi bi-clipboard"></i> Copy Password
           </button>
         </div>
@@ -61,8 +61,24 @@
 
     function copyToClipboard(newPassword)
     {
-      debugger;
+      navigator.clipboard.writeText(newPassword)
+        .then(() => {
+          let copyButton = $("#copyButton");
+          let originalText = copyButton.text().trim();
+   
+          // Change button text and appearance
+          copyButton.empty().append("<i class='bi bi-check-lg'></i> Copied!");
+          copyButton.removeClass("btn-primary").addClass("btn-success");
 
+          // Change it back after short delay
+          setTimeout(() => {
+            copyButton.empty().append(originalText);
+            copyButton.removeClass("btn-success").addClass("btn-primary");
+          }, 1500);
+
+        }).catch(err => {
+          console.error("Could not copy text: ", err);
+        });
     }
 
   </script>
