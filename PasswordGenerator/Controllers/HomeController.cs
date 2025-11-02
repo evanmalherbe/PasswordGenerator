@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PasswordGenerator.Models;
+using PasswordGenerator.ViewModels;
 
 namespace PasswordGenerator.Controllers
 {
@@ -23,10 +24,10 @@ namespace PasswordGenerator.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        public IActionResult Create(CreateViewModel model)
         {
-
-          return View();
+          
+          return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
