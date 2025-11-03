@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Builder;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+app.UseHttpsRedirection();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -13,7 +17,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    // ONLY display detailed error information in development
+    app.UseDeveloperExceptionPage(); 
+}
+
 app.UseStaticFiles();
 
 app.UseRouting();
