@@ -28,7 +28,7 @@ To run this app outside of Visual Studio, you'll need the **.NET 8 SDK** install
 
 ## Usage
 Once you open the project in your browser `http://localhost:5000` (or similar), you will see the homepage of the password generator app. Choose a password length from the dropdown menu (See figure 1 below).<br/>
-![Password Generator - screenshot 1](PasswordGenerator/wwwroot/images/passwordGen1.png)<br/>
+![Password Generator - screenshot 1](PasswordGenerator/wwwroot/images/passwordGen1.png) figure 1<br/>
 Choose one or more complexity options (See figure 2 below).<br/>
 ![Password Generator - screenshot 2](PasswordGenerator/wwwroot/images/passwordGen2.png) <br/>
 Click the "Generate Password" button (see figure 3 below).<br/> 
