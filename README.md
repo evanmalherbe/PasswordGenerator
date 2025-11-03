@@ -1,6 +1,6 @@
 # Password Generator
 This password generator web app is built using **.NET 8 with an MVC (Mode-View-Controller)** architecture and **Razor** views. It lets the user determine password length and which complexity options to include (e.g. numbers, special characters).<br/> 
-### Technologies
+[![Live Demo Link](https://img.shields.io/badge/Live%20Demo%20Link-3178c6)](https://passwordgenerator-production-963f.up.railway.app/)<br/>
 ![.NET 8](https://img.shields.io/badge/.NET%208-275779) 
 ![Razor](https://img.shields.io/badge/Razor-da1f1f) 
 ![Javascript](https://img.shields.io/badge/Javascript-43a618) 
