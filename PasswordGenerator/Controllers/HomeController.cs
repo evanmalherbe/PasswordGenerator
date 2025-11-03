@@ -23,6 +23,8 @@ namespace PasswordGenerator.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CreateViewModel model)
         {
           if (!ModelState.IsValid)
@@ -31,9 +33,15 @@ namespace PasswordGenerator.Controllers
             return RedirectToAction("Index", "Home");
           }  
           // If no complexity option is chosen
-          if (!model.LowerCase && !model.UpperCase && !model.LowerCase && !model.SpecialChars && !model.Numbers)
+          if (!model.LowerCase && !model.UpperCase && !model.SpecialChars && !model.Numbers)
           {
             ModelState.AddModelError(string.Empty, "You must select at least one 'Character Types (Complexity)' option.");
+            return View("Index", model);
+          }
+          // Password length too short or too long
+          if (string.IsNullOrWhiteSpace(model?.PasswordLength) || Int32.Parse(model.PasswordLength) < 7 || Int32.Parse(model.PasswordLength) > 20)
+          {
+            ModelState.AddModelError(string.Empty, "Invalid password length chosen");
             return View("Index", model);
           }
           // Create char arrays from alphabet strings

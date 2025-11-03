@@ -11,6 +11,7 @@
         <h4 class="card-title text-primary mb-4">Password Generator Options</h4>
 
         <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
+          @Html.AntiForgeryToken()
           @* Validation errors to user *@
           <div asp-validation-summary="ModelOnly" class="text-danger fw-bold mb-3 text-center" role="alert"></div>
 

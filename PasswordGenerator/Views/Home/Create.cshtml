@@ -1,4 +1,5 @@
-﻿@model PasswordGenerator.ViewModels.CreateViewModel;
+﻿@using System.Text.Json
+@model PasswordGenerator.ViewModels.CreateViewModel;
 @{
   ViewData["Title"] = "Password Generated!";
   string newPass = Model?.NewPassword ?? "";
@@ -35,7 +36,7 @@
           </a>
 
           @* Placeholder for a Copy Button (Requires JavaScript) *@
-          <button type="button" id="copyButton" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="copyToClipboard('@newPass')" title="Click to copy the password to your clipboard">
+          <button type="button" id="copyButton" class="btn btn-primary btn-lg order-1 order-sm-2" onclick="copyToClipboard(@JsonSerializer.Serialize(@newPass))" title="Click to copy the password to your clipboard">
             <i class="bi bi-clipboard"></i> Copy Password
           </button>
         </div>
