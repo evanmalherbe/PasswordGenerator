@@ -27,13 +27,13 @@ To run this app outside of Visual Studio, you'll need the **.NET 8 SDK** install
 5. **Access the application:** Once the application starts, the console output will show the urls where the app is listening. Usually, it will be something like `http://localhost:5000` or `http://localhost:5001`. Open your web browser (E.g. Microsoft Edge, Google Chrome etc) and type that address into your browser address bar to view the app.
 
 ## Usage
-Once you open the project in your browser `http://localhost:5000` (or similar), you will see the homepage of the password generator app. Choose a password length from the dropdown menu (See figure 1 below).<br/>
-![Password Generator - screenshot 1](PasswordGenerator/wwwroot/images/passwordGen1.png) figure 1<br/>
-Choose one or more complexity options (See figure 2 below).<br/>
-![Password Generator - screenshot 2](PasswordGenerator/wwwroot/images/passwordGen2.png) <br/>
-Click the "Generate Password" button (see figure 3 below).<br/> 
-![Password Generator - screenshot 3](PasswordGenerator/wwwroot/images/passwordGen3.png)<br/>
-See your new password and click the "Copy to clipboard" button if you like, or return to the home screen by clicking the "Go back to Generator" button (see figure 4 below).<br/>
+Once you open the project in your browser `http://localhost:5000` (or similar), you will see the homepage of the password generator app. Choose a password length from the dropdown menu (See image below).<br/>
+![Password Generator - screenshot 1](PasswordGenerator/wwwroot/images/passwordGen1.png)<br/><br/>
+Choose one or more complexity options (See image below).<br/>
+![Password Generator - screenshot 2](PasswordGenerator/wwwroot/images/passwordGen2.png) <br/><br/>
+Click the "Generate Password" button (see image below).<br/> 
+![Password Generator - screenshot 3](PasswordGenerator/wwwroot/images/passwordGen3.png)<br/><br/>
+See your new password and click the "Copy to clipboard" button if you like, or return to the home screen by clicking the "Go back to Generator" button (see image below).<br/>
 ![Password Generator - screenshot 4](PasswordGenerator/wwwroot/images/passwordGen4.png)
 
 ## Credits
