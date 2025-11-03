@@ -33,14 +33,22 @@ namespace PasswordGenerator.Controllers
           if (!ModelState.IsValid)
           {
             ModelState.AddModelError(string.Empty, "Missing input");
-            RedirectToAction("Index", "Home");
-          }    
+            return RedirectToAction("Index", "Home");
+          }  
+          // If no complexity option is chosen
+          if (!model.LowerCase && !model.UpperCase && !model.LowerCase && !model.SpecialChars && !model.Numbers)
+          {
+            ModelState.AddModelError(string.Empty, "You must select at least one 'Character Types (Complexity)' option.");
+            return View("Index", model);
+          }
+          // Create char arrays from alphabet strings
           List<char> mix = new List<char>();
           char[] uppercase = uppercaseAlphabet.ToCharArray(); // 26
           char[] lowercase = lowercaseAlphabet.ToCharArray(); // 26
           char[] numbers = numberList.ToCharArray(); // 10
           char[] special = specialChars.ToCharArray(); // 32
           
+          // method to add lists to larger list, IF user chose to include them (e.g. uppercase letters)
           static void addChars(bool toInclude,char[] theArray, List<char> mixList)
           { 
             List<char> theList = new List<char>();
@@ -52,12 +60,13 @@ namespace PasswordGenerator.Controllers
               }
             }
           };
-          
+          // Add char lists
           addChars(model.UpperCase, uppercase, mix);
           addChars(model.LowerCase, lowercase, mix);
           addChars(model.Numbers, numbers, mix);
           addChars(model.SpecialChars, special, mix);
        
+          // Create password by randomly selecting the user defined number of characters from the mixed list of characters
           string password = "";
           Random random = new Random();
           int lengthOfCharsList = mix.Count - 1;
@@ -69,6 +78,8 @@ namespace PasswordGenerator.Controllers
             password += mix[j];
           }
           model.NewPassword = password;
+
+          // Return new password view with created password
           return View(model);
         }
 
