@@ -5,14 +5,13 @@
 
 <div class="row justify-content-center mt-4">
 
-  @* Controls Container - Wrapped in a Card for Visual Definition *@
   <div class="col-12 col-md-5 mb-4">
     <div class="card shadow-sm h-100">
       <div class="card-body">
         <h4 class="card-title text-primary mb-4">Password Generator Options</h4>
 
         <form id="optionsForm" method="post" asp-controller="Home" asp-action="Create">
-          @* Validation errors/messages to user *@
+          @* Validation errors to user *@
           <div asp-validation-summary="ModelOnly" class="text-danger fw-bold mb-3 text-center" role="alert"></div>
 
           @* Length Section *@
@@ -85,26 +84,3 @@
   </div>
 </div>
 
-@section styles {
- @*  <link rel="stylesheet" href="~/assets/libs/sweetalert2/sweetalert2.min.css"> *@
-  <style type="text/css">
-    
-  </style>
-}
-@section scripts {
-  @* <script src="~/assets/js/moment.js"></script> *@
-  <script type="text/javascript">
-    let v = "";
-
-    $(document).ready(async function() 
-    {
-
-    });
-
-    function one()
-    {
-
-    }
-
-  </script>
-}

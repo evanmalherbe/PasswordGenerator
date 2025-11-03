@@ -23,11 +23,6 @@ namespace PasswordGenerator.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Create(CreateViewModel model)
         {
           if (!ModelState.IsValid)
@@ -60,7 +55,7 @@ namespace PasswordGenerator.Controllers
               }
             }
           };
-          // Add char lists
+          // Add char lists to combined/mixed list
           addChars(model.UpperCase, uppercase, mix);
           addChars(model.LowerCase, lowercase, mix);
           addChars(model.Numbers, numbers, mix);
@@ -77,6 +72,7 @@ namespace PasswordGenerator.Controllers
             int j = random.Next(0,lengthOfCharsList);
             password += mix[j];
           }
+
           model.NewPassword = password;
 
           // Return new password view with created password
